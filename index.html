@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Assurance Records App</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header class="app-header">
+  <img src="idh-logo.png" class="logo">
+  <h1>Assurance Records App</h1>
+</header>
+
+<label><b>Filter by Process Name</b></label>
+<select id="processFilter"></select>
+
+<hr>
+
+<h2>Checklist Entry</h2>
+
+<form id="recordForm">
+
+<label>Day / Week</label>
+<input id="dayWeek">
+
+<label>Process Phase</label>
+<input id="processPhase" list="phaseList">
+<datalist id="phaseList"></datalist>
+
+<label>Control / Checklist Item</label>
+<textarea id="control"></textarea>
+
+<label>Responsible Department</label>
+<input id="dept">
+
+<label>SubDepartment</label>
+<input id="subDept">
+
+<label>Owner</label>
+<input id="owner" list="userList">
+<datalist id="userList"></datalist>
+
+<label>Required Evidence</label>
+<input id="evidence">
+
+<label>Target SLA / Days</label>
+<input id="targetSla" type="date">
+
+<label>Actual SLA</label>
+<input id="actualSla" type="date">
+
+<label>Compliance Status</label>
+<select id="compliance">
+  <option>Compliant</option>
+  <option>Non-Compliant</option>
+  <option>Partially Compliant</option>
+  <option>N/A</option>
+</select>
+
+<label>NC Description</label>
+<input id="ncDesc">
+
+<label>Risk Exist</label>
+<select id="riskExist">
+  <option>No</option>
+  <option>Yes</option>
+</select>
+
+<label>Risk Type</label>
+<select id="riskType">
+  <option>N/A</option>
+  <option>Operational</option>
+  <option>Compliance</option>
+  <option>Financial</option>
+  <option>Reputational</option>
+</select>
+
+<label>Risk Level</label>
+<select id="riskLevel">
+  <option>N/A</option>
+  <option>High</option>
+  <option>Medium</option>
+  <option>Low</option>
+</select>
+
+<label>Risk Mitigation Status</label>
+<select id="riskMitigation">
+  <option>N/A</option>
+  <option>Open</option>
+  <option>Mitigated</option>
+  <option>Accepted</option>
+  <option>Closed</option>
+</select>
+
+<label>Findings / Gaps</label>
+<textarea id="findings"></textarea>
+
+<label>CAPA Needed</label>
+<select id="capaNeeded">
+  <option>No</option>
+  <option>Yes</option>
+</select>
+
+<label>CAPA Type</label>
+<select id="capaType">
+  <option>N/A</option>
+  <option>Corrective</option>
+  <option>Preventive</option>
+</select>
+
+<label>CAPA Due Date</label>
+<input id="capaDue" type="date">
+
+<label>Effectiveness</label>
+<select id="effectiveness">
+  <option>N/A</option>
+  <option>Effective</option>
+  <option>Partially Effective</option>
+  <option>Ineffective</option>
+</select>
+
+<label>Comments</label>
+<textarea id="comments"></textarea>
+
+<br>
+<button type="submit">Save Record</button>
+
+</form>
+
+<hr>
+
+<h2>Dashboard</h2>
+
+<table class="dashboard-table">
+<tr><th>Total Records</th><td id="dTotal"></td></tr>
+<tr><th>Risk Count (Risk Exist = Yes)</th><td id="dRisk"></td></tr>
+
+<tr><th colspan="2">Risk Type Breakdown</th></tr>
+<tr><td>Operational</td><td id="dOp"></td></tr>
+<tr><td>Compliance</td><td id="dComp"></td></tr>
+<tr><td>Financial</td><td id="dFin"></td></tr>
+<tr><td>Reputational</td><td id="dRep"></td></tr>
+
+<tr><th colspan="2">Risk Mitigation Status</th></tr>
+<tr><td>Open</td><td id="dOpen"></td></tr>
+<tr><td>Mitigated</td><td id="dMit"></td></tr>
+<tr><td>Accepted</td><td id="dAcc"></td></tr>
+<tr><td>Closed</td><td id="dClosed"></td></tr>
+
+<tr><th colspan="2">CAPA</th></tr>
+<tr><td>CAPA Needed – Yes</td><td id="dCapaYes"></td></tr>
+<tr><td>CAPA Needed – No</td><td id="dCapaNo"></td></tr>
+<tr><td>CAPA Completion %</td><td id="dCapaPct"></td></tr>
+</table>
+
+<hr>
+
+<button onclick="exportCSV()">Export</button>
+<input type="file" accept=".csv" onchange="importCSV(event)">
+
+<script src="app.js"></script>
+</body>
+</html>
